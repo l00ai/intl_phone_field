@@ -11,7 +11,7 @@ import './phone_number.dart';
 import 'countries_ar.dart';
 import 'country.dart';
 
-class LoaiPhoneField extends StatefulWidget {
+class IntlPhoneField extends StatefulWidget {
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
 
@@ -214,7 +214,7 @@ class LoaiPhoneField extends StatefulWidget {
   final PickerDialogStyle? pickerDialogStyle;
   final bool isArabic;
 
-  LoaiPhoneField({
+  IntlPhoneField({
     Key? key,
     this.initialCountryCode,
     this.obscureText = false,
@@ -261,10 +261,10 @@ class LoaiPhoneField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _LoaiPhoneFieldState createState() => _LoaiPhoneFieldState();
+  _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
 }
 
-class _LoaiPhoneFieldState extends State<LoaiPhoneField> {
+class _IntlPhoneFieldState extends State<IntlPhoneField> {
   late List<Country> _countryList;
   late Country _selectedCountry;
   late List<Country> filteredCountries;
