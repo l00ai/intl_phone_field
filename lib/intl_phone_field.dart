@@ -8,8 +8,10 @@ import 'package:intl_phone_field/country_picker_dialog.dart';
 
 import './countries.dart';
 import './phone_number.dart';
+import 'countries_ar.dart';
+import 'country.dart';
 
-class IntlPhoneField extends StatefulWidget {
+class LoaiPhoneField extends StatefulWidget {
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
 
@@ -210,8 +212,9 @@ class IntlPhoneField extends StatefulWidget {
   /// Optional set of styles to allow for customizing the country search
   /// & pick dialog
   final PickerDialogStyle? pickerDialogStyle;
+  final bool isArabic;
 
-  IntlPhoneField({
+  LoaiPhoneField({
     Key? key,
     this.initialCountryCode,
     this.obscureText = false,
@@ -220,6 +223,7 @@ class IntlPhoneField extends StatefulWidget {
     this.onTap,
     this.readOnly = false,
     this.initialValue,
+    this.isArabic = true ,
     this.keyboardType = TextInputType.phone,
     this.controller,
     this.focusNode,
@@ -257,10 +261,10 @@ class IntlPhoneField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
+  _LoaiPhoneFieldState createState() => _LoaiPhoneFieldState();
 }
 
-class _IntlPhoneFieldState extends State<IntlPhoneField> {
+class _LoaiPhoneFieldState extends State<LoaiPhoneField> {
   late List<Country> _countryList;
   late Country _selectedCountry;
   late List<Country> filteredCountries;
@@ -273,8 +277,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   void initState() {
     super.initState();
     _countryList = widget.countries == null
-        ? countries
-        : countries
+        ? ( widget.isArabic ? countries_ar : countries)
+        : ( widget.isArabic ? countries_ar : countries)
             .where((country) => widget.countries!.contains(country.code))
             .toList();
     filteredCountries = _countryList;
@@ -282,7 +286,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
-      _selectedCountry = countries.firstWhere(
+      _selectedCountry = ( widget.isArabic ? countries_ar : countries).firstWhere(
           (country) => number.startsWith(country.dialCode),
           orElse: () => _countryList.first);
       number = number.substring(_selectedCountry.dialCode.length);
