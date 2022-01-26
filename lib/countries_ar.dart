@@ -210,7 +210,7 @@ const List<Country> countries_ar = [
     maxLength: 8,
   ),
   Country(
-    name: "بوليفيا , Country بوليفيا المتعددة القوميات",
+    name: "بوليفيا بوليفيا المتعددة القوميات",
     flag: "🇧🇴",
     code: "BO",
     dialCode: "591",
@@ -762,7 +762,7 @@ const List<Country> countries_ar = [
     maxLength: 15,
   ),
   Country(
-    name: "الكرسي الرسولي (Country الفاتيكان)",
+    name: "الفاتيكان",
     flag: "🇻🇦",
     code: "VA",
     dialCode: "379",
